@@ -1,0 +1,44 @@
+<Button>:
+    font_size: 30
+    color: 0.1,0.5,0.6,1
+    size_hint: 0.33,0.25
+
+<Label>
+    font_size: 30
+    color: 0,1,0,1
+    size_hint: 0.5,0.25
+
+<TextInput>
+    font_size: 30
+    color: 0.1,0.5,0.6,1
+    size_hint: 0.5,0.25
+
+<FloatLayout>:
+    Label:
+        text: "Name for Player 1: "
+        pos_hint: {"top":1}
+
+    Label:
+        text: "Name for Player 2: "
+        pos_hint: {"top":0.75}
+
+    Label:
+        text: "Name for Player 3: "
+        pos_hint: {"top":0.5}
+
+    Button:
+        text: "Submit"
+        pos_hint: {"x":0.5, "bottom":1}
+
+    Button:
+        id: btn
+        text: "Quit"
+
+    TextInput:
+        pos_hint: {"x":0.5, "top": 1}
+
+    TextInput:
+        pos_hint: {"x":0.5, "top": 0.75}
+
+    TextInput:
+        pos_hint: {"x":0.5, "top": 0.5}
