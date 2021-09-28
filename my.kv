@@ -1,44 +1,187 @@
-<Button>:
-    font_size: 30
-    color: 0.1,0.5,0.6,1
-    size_hint: 0.33,0.25
+WindowManager:
+    MainWindow:
+    SecondWindow:
+    ThirdWindow:
 
-<Label>
-    font_size: 30
-    color: 0,1,0,1
-    size_hint: 0.5,0.25
+<MainWindow>:
+    name: "main"
 
-<TextInput>
-    font_size: 30
-    color: 0.1,0.5,0.6,1
-    size_hint: 0.5,0.25
+    FloatLayout:
+        cols:1
 
-<FloatLayout>:
-    Label:
-        text: "Name for Player 1: "
-        pos_hint: {"top":1}
+        FloatLayout:
+            size: root.width, root.height
 
-    Label:
-        text: "Name for Player 2: "
-        pos_hint: {"top":0.75}
+        Label:
+            pos_hint: {"top": 0.9, "x": 0.1}
+            size_hint: 0.8, 0.15
+            text: "Welcome to the home screen of"
+            font_size: 40
 
-    Label:
-        text: "Name for Player 3: "
-        pos_hint: {"top":0.5}
+        Label:
+            pos_hint: {"top": 0.75, "x": 0.1}
+            size_hint: 0.8, 0.15
+            text: "OFC Score Calculator"
+            font_size: 60
+            color: 1,1,0,1
 
-    Button:
-        text: "Submit"
-        pos_hint: {"x":0.5, "bottom":1}
+        Label:
+            text: "Please choose the number of players: "
+            pos_hint: {"x": 0.2, "y":0.3}
+            size_hint: 0.6, 0.3
+            font_size: 30
 
-    Button:
-        id: btn
-        text: "Quit"
+        Button:
+            text: "3"
+            pos_hint: {"y": 0.1, "x": 0.2}
+            size_hint: 0.15,0.1
+            on_release:
+                app.root.current = "third"
+                root.manager.transition.direction = "right"
 
-    TextInput:
-        pos_hint: {"x":0.5, "top": 1}
+        Button:
+            text: "2"
+            pos_hint: {"y": 0.1, "x": 0.65}
+            size_hint: 0.15,0.1
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "left"
 
-    TextInput:
-        pos_hint: {"x":0.5, "top": 0.75}
+<SecondWindow>:
+    name: "second"
 
-    TextInput:
-        pos_hint: {"x":0.5, "top": 0.5}
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+        Label:
+            text: "Name and starting score for Player 1: "
+            pos_hint: {"top":0.9}
+            font_size: 22
+            color: 1,1,0,1
+            size_hint: 0.5,0.25
+
+
+        Label:
+            text: "Name and starting score for Player 2: "
+            pos_hint: {"top":0.525}
+            font_size: 22
+            color: 1,1,0,1
+            size_hint: 0.5,0.25
+
+        Button:
+            text: "Submit"
+            pos_hint: {"x":0.5, "bottom":1}
+            font_size: 30
+            size_hint: 0.5,0.25
+
+        Button:
+            text: "Go Back"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+            font_size: 30
+            size_hint: 0.5,0.25
+
+
+        TextInput:
+            pos_hint: {"x":0.5, "top": 0.775}
+            font_size: 30
+
+            size_hint: 0.5,0.125
+
+        TextInput:
+            pos_hint: {"x":0.5, "top": 0.525}
+            font_size: 30
+            size_hint: 0.5,0.125
+
+        TextInput:
+            pos_hint: {"x":0.5, "top": 0.9}
+            font_size: 30
+            size_hint: 0.5,0.125
+
+
+        TextInput:
+            pos_hint: {"x":0.5, "top": 0.4}
+            font_size: 30
+            size_hint: 0.5,0.125
+
+
+<ThirdWindow>:
+    name: "third"
+
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+        Label:
+            text: "Name and starting score for Player 1: "
+            pos_hint: {"top":1}
+            font_size: 22
+            color: 1,1,0,1
+            size_hint: 0.5,0.25
+
+        Label:
+            text: "Name and starting score for Player 2: "
+            pos_hint: {"top":0.75}
+            font_size: 22
+            color: 1,1,0,1
+            size_hint: 0.5,0.25
+
+        Label:
+            text: "Name and starting score for Player 3: "
+            pos_hint: {"top":0.5}
+            font_size: 22
+            color: 1,1,0,1
+            size_hint: 0.5,0.25
+
+        Button:
+            text: "Submit"
+            pos_hint: {"x":0.5, "bottom":1}
+            font_size: 30
+            size_hint: 0.5,0.25
+
+        Button:
+            text: "Go Back"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "left"
+            font_size: 30
+            size_hint: 0.5,0.25
+
+        TextInput:
+            pos_hint: {"x":0.5, "top": 1}
+            font_size: 30
+
+            size_hint: 0.5,0.125
+
+        TextInput:
+            pos_hint: {"x":0.5, "top": 0.75}
+            font_size: 30
+
+            size_hint: 0.5,0.125
+
+        TextInput:
+            pos_hint: {"x":0.5, "top": 0.5}
+            font_size: 30
+            size_hint: 0.5,0.125
+
+        TextInput:
+            pos_hint: {"x":0.5, "top": 0.875}
+            font_size: 30
+            size_hint: 0.5,0.125
+
+        TextInput:
+            pos_hint: {"x":0.5, "top": 0.625}
+            font_size: 30
+            size_hint: 0.5,0.125
+
+        TextInput:
+            pos_hint: {"x":0.5, "top": 0.375}
+            font_size: 30
+            size_hint: 0.5,0.125

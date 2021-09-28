@@ -1,12 +1,33 @@
 import kivy
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 
-class MyApp(App):
+class MainWindow(Screen):
+    pass
+
+
+class SecondWindow(Screen):
+    pass
+
+
+class ThirdWindow(Screen):
+    pass
+
+
+class WindowManager(ScreenManager):
+    pass
+
+
+kv = Builder.load_file('my.kv')
+
+
+class MyMainApp(App):
     def build(self):
-        return FloatLayout()
+        return kv
 
 
 if __name__ == "__main__":
-    MyApp().run()
+    MyMainApp().run()
