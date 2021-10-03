@@ -2,7 +2,10 @@ WindowManager:
     MainWindow:
     SecondWindow:
     ThirdWindow:
-
+    MainGameWindow2:
+    MainGameWindow3:
+    PopupWindow:
+    PopupWindowEnd:
 <MainWindow>:
     name: "main"
 
@@ -50,6 +53,12 @@ WindowManager:
 <SecondWindow>:
     name: "second"
 
+    name_1: name_1
+    name_2: name_2
+    starting_score_1: st_sc_1
+    starting_score_2: st_sc_2
+
+
     FloatLayout:
         cols:1
 
@@ -76,7 +85,12 @@ WindowManager:
             pos_hint: {"x":0.5, "bottom":1}
             font_size: 30
             size_hint: 0.5,0.25
-
+            on_press:
+                root.clear_window()
+            on_release:
+                root.print_names()
+                app.root.current = "MainGame2"
+                root.manager.transition.direction = "left"
         Button:
             text: "Go Back"
             on_release:
@@ -87,23 +101,27 @@ WindowManager:
 
 
         TextInput:
+            id: st_sc_1
             pos_hint: {"x":0.5, "top": 0.775}
             font_size: 30
 
             size_hint: 0.5,0.125
 
         TextInput:
+            id: name_2
             pos_hint: {"x":0.5, "top": 0.525}
             font_size: 30
             size_hint: 0.5,0.125
 
         TextInput:
+            id: name_1
             pos_hint: {"x":0.5, "top": 0.9}
             font_size: 30
             size_hint: 0.5,0.125
 
 
         TextInput:
+            id: st_sc_2
             pos_hint: {"x":0.5, "top": 0.4}
             font_size: 30
             size_hint: 0.5,0.125
@@ -145,6 +163,9 @@ WindowManager:
             pos_hint: {"x":0.5, "bottom":1}
             font_size: 30
             size_hint: 0.5,0.25
+            on_release:
+                app.root.current = "MainGame3"
+                root.manager.transition.direction = "right"
 
         Button:
             text: "Go Back"
@@ -185,3 +206,303 @@ WindowManager:
             pos_hint: {"x":0.5, "top": 0.375}
             font_size: 30
             size_hint: 0.5,0.125
+
+<MainGameWindow2>
+    name: "MainGame2"
+
+    FloatLayout:
+
+        Button:
+            text: "Start"
+            size_hint: 0.1,0.05
+            pos_hint: {"x": 0.85, "y": 0.90}
+            font_size: 15
+            on_press:
+                root.name_import()
+
+
+        Label:
+            id: hand_n
+            text: "Hand No: DATA"
+            pos_hint: {"y": 0.90, "x": 0.05}
+            size_hint: 0.1,0.05
+            font_size: 20
+
+        Label:
+            id: score_show
+            text: "Score: 0, 0"
+            pos_hint: {"y":0.9, "x":0.2}
+            size_hint: 0.75,0.05
+            font_size: 20
+
+        Button:
+            text: "Go back"
+            size_hint: 0.1,0.05
+            pos_hint: {"x":0.05, "y":0.05}
+            font_size: 15
+            on_press:
+                root.del_hand()
+
+        Button:
+            text: "End Game"
+            size_hint: 0.15,0.05
+            pos_hint: {"x":0.40, "y":0.05}
+            font_size: 15
+            on_press:
+                root.pop_btn_end()
+
+
+        Button:
+            text: "Chart"
+            size_hint: 0.1,0.05
+            pos_hint: {"x":0.85, "y":0.05}
+            font_size: 15
+            on_press:
+                root.pop_btn()
+
+        Label:
+            text: "Royaltie Points"
+            size_hint: 0.3, 0.05
+            pos_hint: {"x": 0.15, "y": 0.85}
+            font_size: 25
+            color: 1,1,0,1
+
+        Label:
+            text: "Row Points"
+            size_hint: 0.3, 0.05
+            pos_hint: {"x": 0.6, "y": 0.85}
+            font_size: 25
+            color: 1,1,0,1
+
+        Label:
+            id: name_label_1
+            text: "Player 1(): "
+            size_hint: 0.3, 0.05
+            pos_hint: {"x":0.05, "y": 0.75}
+            font_size: 20
+
+        TextInput:
+            id: points_1
+            size_hint: 0.1, 0.05
+            pos_hint: {"x": 0.35, "y": 0.75}
+
+        Label:
+            id: name_label_2
+            text: "Player 2(): "
+            size_hint: 0.3, 0.05
+            pos_hint: {"x":0.05, "y": 0.60}
+            font_size: 20
+
+        TextInput:
+            id: points_2
+            size_hint: 0.1, 0.05
+            pos_hint: {"x": 0.35, "y": 0.60}
+
+        Label:
+            text: "Row 1 - 2: "
+            size_hint: 0.3, 0.05
+            pos_hint: {"x":0.55, "y": 0.60}
+            font_size: 20
+
+        TextInput:
+            id: row_points
+            size_hint: 0.1, 0.05
+            pos_hint: {"x": 0.85, "y": 0.60}
+
+        Label:
+            id: score_id
+            text: "The current score appears here!!"
+            size_hint: 0.7, 0.1
+            pos_hint: {"x": 0.05, "y": 0.15}
+            font_size: 30
+
+        Button:
+            text: "Calc."
+            size_hint: 0.1,0.05
+            pos_hint: {"x":0.85, "y":0.20}
+            font_size: 15
+            on_press:
+                root.collect_data()
+
+        Button:
+            text: "Conf."
+            size_hint: 0.1,0.05
+            pos_hint: {"x":0.85, "y":0.15}
+            font_size: 15
+            on_press:
+                root.do_math()
+                root.score_f()
+
+<MainGameWindow3>
+    name: "MainGame3"
+
+    FloatLayout:
+
+        Label:
+            text: "Hand No: DATA"
+            pos_hint: {"y": 0.90, "x": 0.05}
+            size_hint: 0.1,0.05
+            font_size: 20
+
+        Label:
+            text: "Last Hand: DATA"
+            pos_hint: {"y":0.9, "x":0.2}
+            size_hint: 0.75,0.05
+            font_size: 20
+
+        Button:
+            text: "Go back"
+            size_hint: 0.1,0.05
+            pos_hint: {"x":0.05, "y":0.05}
+            font_size: 15
+            on_press:
+                app.root.current = "third"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "End Game"
+            size_hint: 0.15,0.05
+            pos_hint: {"x":0.40, "y":0.05}
+            font_size: 15
+            on_press:
+
+        Button:
+            text: "Chart"
+            size_hint: 0.1,0.05
+            pos_hint: {"x":0.85, "y":0.05}
+            font_size: 15
+            on_press:
+                root.pop_btn()
+
+        Label:
+            text: "Royaltie Points"
+            size_hint: 0.3, 0.05
+            pos_hint: {"x": 0.15, "y": 0.85}
+            font_size: 25
+            color: 1,1,0,1
+
+        Label:
+            text: "Row Points"
+            size_hint: 0.3, 0.05
+            pos_hint: {"x": 0.6, "y": 0.85}
+            font_size: 25
+            color: 1,1,0,1
+
+        Label:
+            text: "Player 1: "
+            size_hint: 0.3, 0.05
+            pos_hint: {"x":0.05, "y": 0.75}
+            font_size: 20
+        TextInput:
+            size_hint: 0.1, 0.05
+            pos_hint: {"x": 0.35, "y": 0.75}
+
+        Label:
+            text: "Player 2: "
+            size_hint: 0.3, 0.05
+            pos_hint: {"x":0.05, "y": 0.60}
+            font_size: 20
+        TextInput:
+            size_hint: 0.1, 0.05
+            pos_hint: {"x": 0.35, "y": 0.60}
+
+        Label:
+            text: "Player 3: "
+            size_hint: 0.3, 0.05
+            pos_hint: {"x":0.05, "y": 0.45}
+            font_size: 20
+        TextInput:
+            size_hint: 0.1, 0.05
+            pos_hint: {"x": 0.35, "y": 0.45}
+
+        Label:
+            text: "Row 1 - 2 : "
+            size_hint: 0.3, 0.05
+            pos_hint: {"x":0.55, "y": 0.75}
+            font_size: 20
+        TextInput:
+            size_hint: 0.1, 0.05
+            pos_hint: {"x": 0.85, "y": 0.75}
+
+        Label:
+            text: "Row 2 - 3: "
+            size_hint: 0.3, 0.05
+            pos_hint: {"x":0.55, "y": 0.60}
+            font_size: 20
+        TextInput:
+            size_hint: 0.1, 0.05
+            pos_hint: {"x": 0.85, "y": 0.60}
+
+        Label:
+            text: "Row 3 - 1: "
+            size_hint: 0.3, 0.05
+            pos_hint: {"x":0.55, "y": 0.45}
+            font_size: 20
+        TextInput:
+            size_hint: 0.1, 0.05
+            pos_hint: {"x": 0.85, "y": 0.45}
+
+        Label:
+            text: "The current score appears here!!"
+            size_hint: 0.7, 0.1
+            pos_hint: {"x": 0.05, "y": 0.15}
+            font_size: 30
+
+        Button:
+            text: "Calc."
+            size_hint: 0.1,0.05
+            pos_hint: {"x":0.85, "y":0.20}
+            font_size: 15
+            on_press:
+
+        Button:
+            text: "Conf."
+            size_hint: 0.1,0.05
+            pos_hint: {"x":0.85, "y":0.15}
+            font_size: 15
+            on_press:
+        Button:
+            text: "Start"
+            size_hint: 0.1,0.05
+            pos_hint: {"x": 0.85, "y": 0.90}
+            font_size: 15
+            on_press:
+
+<PopupWindow>
+    name: "popupWindow"
+
+    FloatLayout:
+        Image:
+            source: "OFC_my_table.png"
+
+<PopupWindowEnd>
+    name: "popupWindow2"
+
+    FloatLayout:
+        Label:
+            size_hint: 0.8, 0.3
+            text: "END SCREEN"
+            pos_hint: {"x": 0.1, "y": 0.6}
+            font_size: 32
+
+        Label:
+            id: score_display_1
+            size_hint: 0.8, 0.1
+            text:
+            pos_hint: {"x": 0.1, "y": 0.5}
+            font_size: 32
+
+        Button:
+            size_hint: 0.2, 0.1
+            text: "EXIT"
+            pos_hint: {"x": 0.1, "y": 0.2}
+            font_size: 16
+            on_press:
+                app.stop()
+
+        Button:
+            size_hint: 0.2, 0.1
+            text: "Score"
+            pos_hint: {"x": 0.7, "y": 0.2}
+            font_size: 16
+            on_press:
+                root.score_show()
